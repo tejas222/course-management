@@ -1,10 +1,40 @@
 {
   "category": [
     {
+      "id": 2,
       "categoryId": "001",
-      "categoryName": "React Angular",
-      "createdAt": "2021-09-17",
-      "id": 1
+      "categoryName": "Web Developement",
+      "createdAt": "2021-09-25"
+    },
+    {
+      "id": 3,
+      "categoryId": "002",
+      "categoryName": "Data Science",
+      "createdAt": "2021-09-15"
+    },
+    {
+      "id": 4,
+      "categoryId": "003",
+      "categoryName": "Mobile Developement",
+      "createdAt": "2021-09-05"
+    },
+    {
+      "id": 5,
+      "categoryId": "004",
+      "categoryName": "Programming Languages",
+      "createdAt": "2021-09-02"
+    },
+    {
+      "id": 6,
+      "categoryId": "005",
+      "categoryName": "Game Developement",
+      "createdAt": "2021-09-18"
+    },
+    {
+      "categoryId": "006",
+      "categoryName": "Software Testing",
+      "createdAt": "2021-10-22",
+      "id": 7
     }
   ]
 }

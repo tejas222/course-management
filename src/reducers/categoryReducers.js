@@ -4,11 +4,14 @@ import {
   GET_ERRORS,
   CATEGORY,
   UPDATE_CATEGORY,
-} from "../actions/types";
+  SEARCH_CATEGORY,
+  SORT_CATEGORY,
+} from '../actions/types';
 
 const initialstate = {
   categories: [],
   category: {},
+  categoriescopy: [],
 };
 
 export default function (state = initialstate, action) {
@@ -17,6 +20,7 @@ export default function (state = initialstate, action) {
       return {
         ...state,
         categories: action.payload,
+        categoriescopy: action.payload,
       };
 
     case DELETE_CATEGORY:
@@ -35,7 +39,39 @@ export default function (state = initialstate, action) {
         ...state,
         category: action.payload,
       };
+    case SEARCH_CATEGORY: {
+      console.log('in filter');
+      return {
+        ...state,
 
+        categories: state.categoriescopy.filter((category) =>
+          action.payload !== ' '
+            ? category.categoryName
+                .toLowerCase()
+                .includes(action.payload.toLowerCase())
+            : state.categories
+        ),
+      };
+    }
+
+    case SORT_CATEGORY:
+      return {
+        ...state,
+        categories:
+          action.payload === 'Ascending'
+            ? state.categoriescopy.sort((a, b) => {
+                return (
+                  new Date(a.createdAt).getTime() -
+                  new Date(b.createdAt).getTime()
+                );
+              })
+            : state.categoriescopy.sort((a, b) => {
+                return (
+                  new Date(b.createdAt).getTime() -
+                  new Date(a.createdAt).getTime()
+                );
+              }),
+      };
     default:
       return state;
   }

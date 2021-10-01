@@ -1,15 +1,17 @@
-import { Provider } from "react-redux";
-import store from "./store";
+import { Provider } from 'react-redux';
+import store from './store';
 
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.js';
+import 'bootstrap/dist/js/bootstrap.bundle.js';
+import './App.css';
 
-import Dashboard from "./components/Dashboard";
-import CreateCategory from "./components/CreateCategory";
-import Navbar from "./components/Navigation/Navbar";
+import Dashboard from './components/Dashboard';
+import CreateCategory from './components/CreateCategory';
+import Navbar from './components/Navigation/Navbar';
 
-import { Route, BrowserRouter as Router } from "react-router-dom";
-import EditCategory from "./components/EditCategory";
+import { Route, BrowserRouter as Router } from 'react-router-dom';
+import EditCategory from './components/EditCategory';
 
 function App() {
   return (
@@ -18,10 +20,10 @@ function App() {
         <div>
           <Router>
             <Navbar />
-            <Route exact path="/" component={Dashboard} />
-            <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/addcategory" component={CreateCategory} />
-            <Route exact path="/editcategory/:id" component={EditCategory} />
+            <Route exact path='/' component={Dashboard} />
+            <Route exact path='/dashboard' component={Dashboard} />
+            <Route exact path='/addcategory' component={CreateCategory} />
+            <Route exact path='/editcategory/:id' component={EditCategory} />
           </Router>
         </div>
       </Provider>

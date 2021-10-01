@@ -1,5 +1,7 @@
-export const GET_CATEGORY = "GET_CATEGORY";
-export const GET_ERRORS = "GET_ERRORS";
-export const DELETE_CATEGORY = "DELETE_CATEGORY";
-export const CATEGORY = "CATEGORY";
-export const UPDATE_CATEGORY = "UPDATE_CATEGORY";
+export const GET_CATEGORY = 'GET_CATEGORY';
+export const GET_ERRORS = 'GET_ERRORS';
+export const DELETE_CATEGORY = 'DELETE_CATEGORY';
+export const CATEGORY = 'CATEGORY';
+export const UPDATE_CATEGORY = 'UPDATE_CATEGORY';
+export const SEARCH_CATEGORY = 'SEARCH_CATEGORY';
+export const SORT_CATEGORY = 'SORT_CATEGORY';
