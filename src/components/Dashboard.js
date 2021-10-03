@@ -10,38 +10,31 @@ import SearchData from './SearchData';
 import JsonExport from './JsonExport';
 import AddButton from '../components/Buttons/AddButton';
 import SortCategory from './SortCategory';
-import Pagination from './Pagination';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ReactPaginate from 'react-paginate';
 
 export class Dashboard extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      currentPage: 1,
-      postsPerPage: 5,
+      pageNumber: 0,
+      usersPerPage: 5,
     };
   }
 
   componentDidMount() {
     this.props.getCategories();
-    console.log('in did mount');
   }
 
   render() {
     const categories = this.props.category.categories;
+    const pagesVisited = this.state.pageNumber * this.state.usersPerPage;
+    const pageCount = Math.ceil(categories.length / this.state.usersPerPage);
 
-    console.log(categories.length);
-
-    const indexOfLastPost = this.state.currentPage * this.state.postsPerPage;
-    const indexOfFirstPost = indexOfLastPost - this.state.postsPerPage;
-    const currentPosts = categories.slice(indexOfFirstPost, indexOfLastPost);
-    // Change page
-    const paginate = (pageNumber) => {
-      this.setState({ currentPage: pageNumber });
+    const changePage = ({ selected }) => {
+      this.setState({ pageNumber: selected });
     };
-    console.log('Paginate', paginate);
+
     return (
       <>
         <div className='container mt-4'>
@@ -65,15 +58,28 @@ export class Dashboard extends Component {
             </div>
 
             <div className='row'>
-              {currentPosts.map((category) => (
-                <CategoryDisplay key={category.id} category={category} />
-              ))}
-              <Pagination
-                postsPerPage={this.state.postsPerPage}
-                totalPosts={categories.length}
-                paginate={paginate}
-              />
+              {categories
+                .slice(pagesVisited, pagesVisited + this.state.usersPerPage)
+                .map((category) => (
+                  <CategoryDisplay key={category.id} category={category} />
+                ))}
             </div>
+            <ReactPaginate
+              previousLabel={'Previous'}
+              nextLabel={'Next'}
+              pageCount={pageCount}
+              onPageChange={changePage}
+              containerClassName={'pagination justify-content-end'}
+              pageClassName={'page-item'}
+              pageLinkClassName={'page-link'}
+              previousClassName={'page-item'}
+              previousLinkClassName={'page-link'}
+              nextClassName={'page-item'}
+              nextLinkClassName={'page-link'}
+              breakClassName={'page-item'}
+              breakLinkClassName={'page-link'}
+              activeClassName={'active'}
+            />
           </div>
         </div>
       </>
